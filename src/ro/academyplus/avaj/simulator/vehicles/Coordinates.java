@@ -9,9 +9,9 @@ public class Coordinates {
     private int height;
 
     Coordinates(int longitude, int latitude, int height) {
-        this.longitude = longitude;
-        this.latitude = latitude;
-        this.height = height;
+        this.longitude = Math.max(longitude, 0);
+        this.latitude = Math.max(latitude, 0);
+        this.height = Math.max(Math.min(height, 100), 0);
     }
 
     public int getLongitude() {

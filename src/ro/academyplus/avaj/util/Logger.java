@@ -1,6 +1,7 @@
 package ro.academyplus.avaj.util;
 
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
@@ -8,19 +9,33 @@ import java.io.IOException;
  * Created by vlad on 31/05/2017.
  */
 public class Logger {
-    private static Logger logger = new Logger();
+    private static Logger logger = null;
     private static BufferedWriter bufferedWriter = null;
 
     private Logger() {
-        logger = this;
+//        logger = this;
+//        try {
+//            bufferedWriter = new BufferedWriter(new FileWriter(new File("simulation.txt")));
+//            System.out.println("created");
+//            System.out.println(bufferedWriter.toString());
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//        System.out.println(bufferedWriter);
     }
 
     public static Logger getLogger() {
+        if (logger == null) {
+            logger = new Logger();
+        }
+        if (bufferedWriter == null) {
+            try {
+                bufferedWriter = new BufferedWriter(new FileWriter(new File("simulation.txt")));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
         return logger;
-    }
-
-    public void open() throws IOException {
-        bufferedWriter = new BufferedWriter(new FileWriter("simulation.txt"));
     }
 
     public void log(String str) {

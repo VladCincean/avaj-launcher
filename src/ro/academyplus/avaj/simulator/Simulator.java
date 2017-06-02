@@ -57,6 +57,8 @@ public class Simulator {
             System.out.println("Couldn't find file " + args[0]);
         } catch (IOException e) {
             System.out.println("There was an error while reading the file " + args[0]);
+        } catch (Exception e) {
+            e.printStackTrace();
         } finally {
             Logger.getLogger().close();
         }
