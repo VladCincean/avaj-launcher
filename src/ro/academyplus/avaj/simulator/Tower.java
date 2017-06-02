@@ -1,5 +1,6 @@
 package ro.academyplus.avaj.simulator;
 
+import ro.academyplus.avaj.exception.UnknownWeatherException;
 import ro.academyplus.avaj.simulator.vehicles.Flyable;
 
 import java.util.ArrayList;
@@ -19,7 +20,7 @@ public abstract class Tower {
         this.observers.remove(flyable);
     }
 
-    protected void conditionsChanged() {
+    protected void conditionsChanged() throws UnknownWeatherException {
         List<Flyable> copyOfObservers = new ArrayList<>();
         for (Flyable flyable : observers) {
             copyOfObservers.add(flyable);

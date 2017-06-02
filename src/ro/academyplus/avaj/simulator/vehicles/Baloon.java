@@ -1,5 +1,6 @@
 package ro.academyplus.avaj.simulator.vehicles;
 
+import ro.academyplus.avaj.exception.UnknownWeatherException;
 import ro.academyplus.avaj.simulator.WeatherTower;
 import ro.academyplus.avaj.util.Logger;
 
@@ -14,7 +15,7 @@ public class Baloon extends Aircraft implements Flyable {
         this.weatherTower = null;
     }
 
-    public void updateConditions() {
+    public void updateConditions() throws UnknownWeatherException {
         String weather = this.weatherTower.getWeather(super.coordinates);
         Coordinates newCoordinates = null;
 
@@ -60,8 +61,7 @@ public class Baloon extends Aircraft implements Flyable {
                 );
                 break;
             default:
-                newCoordinates = super.coordinates;
-                break;
+                throw new UnknownWeatherException("Unknown weather: " + weather);
         }
 
         super.coordinates = newCoordinates;

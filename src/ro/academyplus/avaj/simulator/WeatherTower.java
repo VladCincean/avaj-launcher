@@ -1,5 +1,6 @@
 package ro.academyplus.avaj.simulator;
 
+import ro.academyplus.avaj.exception.UnknownWeatherException;
 import ro.academyplus.avaj.simulator.vehicles.Coordinates;
 
 /**
@@ -11,7 +12,7 @@ public class WeatherTower extends Tower {
         return WeatherProvider.getProvider().getCurrentWeather(coordinates);
     }
 
-    void changeWeather() {
+    void changeWeather() throws UnknownWeatherException {
         WeatherProvider.getProvider().changeWeather();
         super.conditionsChanged();
     }

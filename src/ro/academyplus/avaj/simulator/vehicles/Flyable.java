@@ -1,5 +1,6 @@
 package ro.academyplus.avaj.simulator.vehicles;
 
+import ro.academyplus.avaj.exception.UnknownWeatherException;
 import ro.academyplus.avaj.simulator.WeatherTower;
 
 /**
@@ -7,7 +8,7 @@ import ro.academyplus.avaj.simulator.WeatherTower;
  */
 public interface Flyable {
 
-    void updateConditions();
+    void updateConditions() throws UnknownWeatherException;
 
     void registerTower(WeatherTower weatherTower);
 }
